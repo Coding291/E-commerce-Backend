@@ -18,14 +18,16 @@ router.get('/', (req, res) => {
     }
   ]
 })
+//promise based function would then return the response in json
 .then(dbCategory => res.json(dbCategory))
+//if catches error it will throw an error
 .catch(err => {
   console.log(err);
   res.status(500).json(err);
 });
 });
 
-
+//router created 
 router.get('/:id', (req, res) => {
   // find one category by its `id` value
   // be sure to include its associated Products
@@ -33,16 +35,19 @@ router.get('/:id', (req, res) => {
     where: {
       id: req.params.id
     },
+    //attributes
     attributes: [
       'id',
       'category_name'
     ],
+    //associations
     include: [
       {
         model: Product
       }
     ]
   })
+     //promise based function would then return the response in json
     .then(dbCategory => {
       if (!dbCategory) {
         res.status(404).json({ message: 'Not found with this id' });
@@ -61,6 +66,7 @@ router.post('/', (req, res) => {
   Category.create({
     category_name: req.body.category_name,
   })
+  //promise based function would then return the response in json
     .then(dbCategory => res.json(dbCategory))
     .catch(err => {
       console.log(err);
@@ -80,6 +86,7 @@ router.put('/:id', (req, res) => {
       }
     }
   )
+   //promise based function would then return the response in json
     .then(dbCategory => {
       if (!dbCategory) {
         res.status(404).json({ message: 'Not found with this id' });
@@ -101,6 +108,7 @@ router.delete('/:id', (req, res) => {
       id: req.params.id
     }
   })
+   //promise based function would then return the response in json
     .then(dbCategory => {
       if (!dbCategory) {
         res.status(404).json({ message: 'Not found with this id' });

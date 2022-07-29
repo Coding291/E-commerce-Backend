@@ -24,14 +24,14 @@ Product.init(
       type: DataTypes.DECIMAL,
       allowNull: false,
       validate: {
-        isDECIMAL: true
+        isDecimal: true
       }
     },
     stock: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
-        isNUMERIC: true
+        isNumeric: true
       }
     },
     category_id: {
@@ -50,5 +50,5 @@ Product.init(
     modelName: 'product',
   }
 );
-
+//export the file
 module.exports = Product;
